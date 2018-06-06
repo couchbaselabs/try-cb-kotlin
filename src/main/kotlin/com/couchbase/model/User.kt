@@ -2,8 +2,10 @@ package com.couchbase.model
 
 import com.couchbase.client.java.repository.annotation.Field
 import org.springframework.data.annotation.Id
+import org.springframework.data.couchbase.core.mapping.Document
 import javax.validation.constraints.NotNull
 
+@Document
 class User(): BasicEntity() {
 
     constructor(id: String,
@@ -25,11 +27,12 @@ class User(): BasicEntity() {
     @NotNull
     var name: String? = null
 
+    @Field
     var address: Address? = null
 
+    @Field
     var preferences: List<Preference> = emptyList()
 
+    @Field
     var securityRoles: List<String> = emptyList()
-
-
 }

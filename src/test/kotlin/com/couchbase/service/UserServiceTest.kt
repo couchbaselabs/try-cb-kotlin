@@ -4,19 +4,16 @@ import com.couchbase.model.Address
 import com.couchbase.model.Preference
 import com.couchbase.model.User
 import com.couchbase.repositories.UserRepository
-import org.junit.Test
-import org.springframework.beans.factory.annotation.Autowired
-import java.util.*
-
 import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.hasSize
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertThat
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit4.SpringRunner
+import java.util.*
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
@@ -75,13 +72,13 @@ class UserServiceTest {
         userService.save(User("user::2", "user2", address2, emptyList(), emptyList()))
         userService.save(User("user::3", "user3", address3, emptyList(), emptyList()))
 
-        var users = userService.findUserByAddress("street1", null, null, null, null)
+        var users = userService.findUserByAddress(streetName = "street1")
         assertThat(users, hasSize<Any>(2))
 
-        users = userService.findUserByAddress("street1", "1", null, null, null)
+        users = userService.findUserByAddress(streetName = "street1", number=  "1")
         assertThat(users, hasSize<Any>(1))
 
-        users = userService.findUserByAddress(null, null, null, null, "de")
+        users = userService.findUserByAddress(country = "de")
         assertThat(users, hasSize<Any>(1))
     }
 

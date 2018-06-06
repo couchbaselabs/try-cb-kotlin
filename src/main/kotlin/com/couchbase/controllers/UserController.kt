@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import javax.websocket.server.PathParam
 
-import org.springframework.http.MediaType.APPLICATION_JSON_VALUE
-import org.springframework.web.bind.annotation.RequestMethod.GET
-import org.springframework.web.bind.annotation.RequestMethod.POST
 
 @RestController
 @RequestMapping("/api/user")
@@ -16,7 +13,6 @@ class UserController {
 
     @Autowired
     lateinit var userService: UserService
-
 
     @GetMapping(value = "/{id}")
     fun findById(@PathParam("id") id: String) = userService.findById(id)

@@ -31,8 +31,8 @@ class UserService {
     /**
      * Example of ad hoc queries
      */
-    fun findUserByAddress(streetName: String?, number: String?, postalCode: String?,
-                          city: String?, country: String?): List<User> {
+    fun findUserByAddress(streetName: String = "", number: String = "", postalCode: String = "",
+                          city: String = "", country: String = ""): List<User> {
 
         var query = "SELECT meta(b).id as id, b.* FROM " + getBucketName() + " b WHERE  b._class = '" + User::class.java.getName() + "' "
 
